@@ -255,20 +255,20 @@
 
     </div>
 
-   <audio autoplay loop id="background-music">
-    <source src="bawatsandali.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+   <audio autoplay loop id="background-music" muted>
+        <source src="bawatsandali.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
     </audio>
 
     <script>
-        window.onload = function() {
+         window.onload = function() {
             const audio = document.getElementById('background-music');
             
-            // Unmute after the page loads (for most browsers, autoplay works only if muted first)
+            // Set timeout to unmute after a very short delay to allow autoplay
             setTimeout(() => {
-                audio.muted = false;  // Unmute after load
-                audio.play();         // Start playback if autoplay doesn't trigger
-            }, 100); // Delay to ensure autoplay starts properly
+                audio.muted = false;  // Unmute the audio after loading
+                audio.play();         // Ensure audio starts playing
+            }, 100); // Short delay to ensure autoplay is honored
         };
 
 
