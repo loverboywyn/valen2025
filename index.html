@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coverflow Slider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            background-color: pink;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .coverflow-wrapper {
+            width: 80%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .coverflow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .coverflow-item {
+            width: 200px;
+            height: 300px;
+            margin: 0 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coverflow-item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .coverflow-item:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .active {
+            transform: scale(1) translateX(0);
+            opacity: 1;
+        }
+
+        .inactive {
+            opacity: 0.4;
+            transform: scale(0.8);
+        }
+
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 105, 180, 0.8);
+            border-radius: 50% 50% 0 0;
+            transform: rotate(45deg);
+            opacity: 0;
+            animation: petalFall 5s linear forwards;
+        }
+
+        .petal:before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 105, 180, 0.8);
+            border-radius: 50%;
+            top: -10px;
+            left: 5px;
+        }
+
+        .title {
+            align-items: center;
+            font-size: 36px;
+            letter-spacing: 2px;
+
+        }
+
+        @keyframes petalFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-50px) rotate(45deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        #background-music {
+            position: absolute;
+            /* Ensure it doesn't affect layout */
+            width: 0;
+            height: 0;
+            opacity: 0;
+            /* Make it completely invisible */
+            pointer-events: none;
+            /* Disable any interaction */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="column">
+        <div class="coverflow-wrapper">
+            <div class="coverflow">
+                <div class="coverflow-item" onclick="handleClick(0)">
+                    <img src="image1.jpg" alt="Item 1">
+                </div>
+                <div class="coverflow-item" onclick="handleClick(1)">
+                    <img src="image1.jpg" alt="Item 2">
+                </div>
+                <div class="coverflow-item active" onclick="handleClick(2)">
+                    <img src="image1.jpg" alt="Item 3">
+                </div>
+                <div class="coverflow-item" onclick="handleClick(3)">
+                    <img src="image1.jpg" alt="Item 4">
+                </div>
+                <div class="coverflow-item" onclick="handleClick(4)">
+                    <img src="image1.jpg" alt="Item 5">
+                </div>
+                <div class="coverflow-item" onclick="handleClick(5)">
+                    <img src="image1.jpg" alt="Item 6">
+                </div>
+            </div>
+        </div>
+
+        <div class="title">
+            Happy Valentines Love!!!
+        </div>
+    </div>
+
+
+    <audio autoplay loop id="background-music">
+        <source src="bawatsandali.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+
+    <script>
+        const coverflow = document.querySelector('.coverflow');
+        const items = document.querySelectorAll('.coverflow-item');
+
+        let currentIndex = 2;
+
+        function updateCoverFlow() {
+            items.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                    item.classList.remove('inactive');
+                } else {
+                    item.classList.remove('active');
+                    item.classList.add('inactive');
+                }
+            });
+
+            // Center the active item by adjusting translateX
+            const itemWidth = items[0].offsetWidth;
+            const wrapperWidth = document.querySelector('.coverflow-wrapper').offsetWidth;
+            const offset = (wrapperWidth - itemWidth) / 2 - (currentIndex * (itemWidth + 30));
+            coverflow.style.transform = `translateX(${offset}px)`;
+        }
+
+        // Create random falling petals from the very top
+        function createPetals() {
+            const numberOfPetals = 50; // Number of petals to fall
+            for (let i = 0; i < numberOfPetals; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+
+                // Position the petal randomly along the top of the screen
+                const startPosition = Math.random() * 100; // Random percentage across the screen width
+                const delay = Math.random() * 2; // Random delay for starting fall
+
+                petal.style.left = `${startPosition}vw`; // Random horizontal position
+                petal.style.animationDelay = `${delay}s`; // Random animation delay
+
+                // Append petal to the body
+                document.body.appendChild(petal);
+            }
+        }
+
+        // Call createPetals when the page loads
+        window.onload = createPetals;
+
+        // Add event listeners for navigating left and right
+        function navigate(direction) {
+            currentIndex = (currentIndex + direction + items.length) % items.length;
+            updateCoverFlow();
+            createPetals();
+        }
+
+        // Automatic scroll
+        setInterval(() => {
+            navigate(1);
+        }, 7000);
+
+        // Click event handler to change active item
+        function handleClick(index) {
+            currentIndex = index;
+            updateCoverFlow();
+            createPetals();
+        }
+
+        updateCoverFlow();
+    </script>
+
+</body>
+
+</html>
