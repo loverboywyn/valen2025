@@ -110,14 +110,14 @@
             align-items: center;
             font-size: 36px;
             letter-spacing: 2px;
-            padding: 10px;
+            padding: 5px;
         }
 
         .sub-title {
             align-items: center;
             font-size: 26px;
             letter-spacing: 2px;
-            padding: 10px;
+            padding: 5px;
         }
 
 
@@ -263,10 +263,18 @@
 
 
     <script>
-        document.body.addEventListener('click', () => {
+document.body.addEventListener('click', () => {
     const audio = document.getElementById('background-music');
-    audio.play();
+    if (audio.paused) {
+        audio.play();
+    }
 });
+
+
+const audioElement = document.getElementById('background-music');
+audioElement.removeAttribute('autoplay');
+audioElement.loop = true;
+audioElement.muted = false;
 
         const coverflow = document.querySelector('.coverflow');
         const items = document.querySelectorAll('.coverflow-item');
