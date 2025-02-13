@@ -133,45 +133,43 @@
         }
 
         /* Mobile view adjustments */
-        /* Mobile view adjustments */
-@media only screen and (max-width: 768px) {
-    .petal {
-        width: 25px; /* Smaller petals */
-        height: 25px;
-        animation: petalFallMobile 3s linear forwards;
-    }
+        @media only screen and (max-width: 768px) {
+            .petal {
+                width: 30px;
+                height: 30px;
+                animation: petalFallMobile 3s linear forwards;
+            }
 
-    @keyframes petalFallMobile {
-        0% {
-            opacity: 1;
-            transform: translateY(-30px) rotate(45deg);
+            @keyframes petalFallMobile {
+                0% {
+                    opacity: 1;
+                    transform: translateY(-30px) rotate(45deg);
+                }
+
+                50% {
+                    opacity: 1;
+                    transform: translateY(80vh) rotate(180deg);
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translateY(150px) rotate(360deg);
+                }
+            }
+
+            .coverflow-item {
+                width: 150px;
+                height: 225px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .sub-title {
+                font-size: 16px;
+            }
         }
-
-        50% {
-            opacity: 1;
-            transform: translateY(80vh) rotate(180deg);
-        }
-
-        100% {
-            opacity: 0;
-            transform: translateY(150px) rotate(360deg);
-        }
-    }
-
-    .coverflow-item {
-        width: 120px; /* Smaller coverflow items */
-        height: 180px;
-    }
-
-    .title {
-        font-size: 18px; /* Smaller title text */
-    }
-
-    .sub-title {
-        font-size: 14px; /* Smaller subtitle text */
-    }
-}
-
 
         /* Tablet view adjustments */
         @media only screen and (min-width: 768px) and (max-width: 1024px) {
