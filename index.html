@@ -256,25 +256,22 @@
 
     </div>
 
-   <audio autoplay loop muted id="background-music">
+   <audio autoplay loop id="background-music">
     <source src="bawatsandali.mp3" type="audio/mp3">
     Your browser does not support the audio element.
-</audio>
-
+    </audio>
 
     <script>
-document.body.addEventListener('click', () => {
-    const audio = document.getElementById('background-music');
-    if (audio.paused) {
-        audio.play();
-    }
-});
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            
+            // Unmute after the page loads (for most browsers, autoplay works only if muted first)
+            setTimeout(() => {
+                audio.muted = false;  // Unmute after load
+                audio.play();         // Start playback if autoplay doesn't trigger
+            }, 100); // Delay to ensure autoplay starts properly
+        };
 
-
-const audioElement = document.getElementById('background-music');
-audioElement.removeAttribute('autoplay');
-audioElement.loop = true;
-audioElement.muted = false;
 
         const coverflow = document.querySelector('.coverflow');
         const items = document.querySelectorAll('.coverflow-item');
