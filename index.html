@@ -256,12 +256,18 @@
 
     </div>
 
-    <audio autoplay loop id="background-music">
-        <source src="bawatsandali.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+   <audio autoplay loop muted id="background-music">
+    <source src="bawatsandali.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
 
     <script>
+        document.body.addEventListener('click', () => {
+    const audio = document.getElementById('background-music');
+    audio.play();
+});
+
         const coverflow = document.querySelector('.coverflow');
         const items = document.querySelectorAll('.coverflow-item');
 
