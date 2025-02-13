@@ -117,6 +117,7 @@
             letter-spacing: 2px;
         }
 
+
         @keyframes petalFall {
             0% {
                 opacity: 1;
@@ -138,70 +139,6 @@
             /* Make it completely invisible */
             pointer-events: none;
             /* Disable any interaction */
-        }
-
-        /* Mobile View Adjustments */
-        @media (max-width: 768px) {
-            .coverflow-wrapper {
-                width: 90%;
-            }
-
-            .coverflow-item {
-                width: 150px;
-                height: 225px;
-                margin: 0 10px;
-            }
-
-            .coverflow {
-                flex-direction: column;
-            }
-
-            .coverflow-item.active {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            .coverflow-item.inactive {
-                opacity: 0.6;
-                transform: scale(0.9);
-            }
-
-            .title {
-                font-size: 28px;
-                text-align: center;
-            }
-
-            .sub-title {
-                font-size: 20px;
-                text-align: center;
-            }
-        }
-
-        /* Very Small Screens (Phones in Portrait Mode) */
-        @media (max-width: 480px) {
-            .coverflow-wrapper {
-                width: 100%;
-            }
-
-            .coverflow-item {
-                width: 120px;
-                height: 180px;
-                margin: 0 5px;
-            }
-
-            .coverflow {
-                flex-direction: column;
-            }
-
-            .title {
-                font-size: 24px;
-                text-align: center;
-            }
-
-            .sub-title {
-                font-size: 18px;
-                text-align: center;
-            }
         }
     </style>
 
@@ -240,12 +177,18 @@
         <div class="sub-title">
             I Love You!!!
         </div>
+
+
     </div>
+
 
     <audio autoplay loop id="background-music">
         <source src="bawatsandali.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
+
+
+
 
     <script>
         const coverflow = document.querySelector('.coverflow');
