@@ -277,11 +277,10 @@
          window.onload = function() {
             const audio = document.getElementById('background-music');
             
-            // Set timeout to unmute after a very short delay to allow autoplay
             setTimeout(() => {
-                audio.muted = false;  // Unmute the audio after loading
-                audio.play();         // Ensure audio starts playing
-            }, 100); // Short delay to ensure autoplay is honored
+                audio.muted = false;  
+                audio.play();        
+            }, 100); ed
         };
 
 
@@ -301,48 +300,40 @@
                 }
             });
 
-            // Center the active item by adjusting translateX
             const itemWidth = items[0].offsetWidth;
             const wrapperWidth = document.querySelector('.coverflow-wrapper').offsetWidth;
             const offset = (wrapperWidth - itemWidth) / 2 - (currentIndex * (itemWidth + 30));
             coverflow.style.transform = `translateX(${offset}px)`;
         }
 
-        // Create random falling petals from the very top
         function createPetals() {
-            const numberOfPetals = 50; // Number of petals to fall
+            const numberOfPetals = 50; 
             for (let i = 0; i < numberOfPetals; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
 
-                // Position the petal randomly along the top of the screen
-                const startPosition = Math.random() * 100; // Random percentage across the screen width
-                const delay = Math.random() * 2; // Random delay for starting fall
+                const startPosition = Math.random() * 100; 
+                const delay = Math.random() * 2; 
 
-                petal.style.left = `${startPosition}vw`; // Random horizontal position
-                petal.style.animationDelay = `${delay}s`; // Random animation delay
+                petal.style.left = `${startPosition}vw`; 
+                petal.style.animationDelay = `${delay}s`; y
 
-                // Append petal to the body
                 document.body.appendChild(petal);
             }
         }
 
-        // Call createPetals when the page loads
         window.onload = createPetals;
-
-        // Add event listeners for navigating left and right
+t
         function navigate(direction) {
             currentIndex = (currentIndex + direction + items.length) % items.length;
             updateCoverFlow();
             createPetals();
         }
 
-        // Automatic scroll
         setInterval(() => {
             navigate(1);
         }, 7000);
 
-        // Click event handler to change active item
         function handleClick(index) {
             currentIndex = index;
             updateCoverFlow();
