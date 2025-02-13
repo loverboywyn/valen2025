@@ -109,7 +109,12 @@
             align-items: center;
             font-size: 36px;
             letter-spacing: 2px;
+        }
 
+        .sub-title {
+            align-items: center;
+            font-size: 26px;
+            letter-spacing: 2px;
         }
 
         @keyframes petalFall {
@@ -134,6 +139,70 @@
             pointer-events: none;
             /* Disable any interaction */
         }
+
+        /* Mobile View Adjustments */
+        @media (max-width: 768px) {
+            .coverflow-wrapper {
+                width: 90%;
+            }
+
+            .coverflow-item {
+                width: 150px;
+                height: 225px;
+                margin: 0 10px;
+            }
+
+            .coverflow {
+                flex-direction: column;
+            }
+
+            .coverflow-item.active {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            .coverflow-item.inactive {
+                opacity: 0.6;
+                transform: scale(0.9);
+            }
+
+            .title {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .sub-title {
+                font-size: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Very Small Screens (Phones in Portrait Mode) */
+        @media (max-width: 480px) {
+            .coverflow-wrapper {
+                width: 100%;
+            }
+
+            .coverflow-item {
+                width: 120px;
+                height: 180px;
+                margin: 0 5px;
+            }
+
+            .coverflow {
+                flex-direction: column;
+            }
+
+            .title {
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .sub-title {
+                font-size: 18px;
+                text-align: center;
+            }
+        }
     </style>
 
 </head>
@@ -144,22 +213,22 @@
         <div class="coverflow-wrapper">
             <div class="coverflow">
                 <div class="coverflow-item" onclick="handleClick(0)">
-                    <img src="image1.jpg" alt="Item 1">
+                    <img src="image1.jpeg" alt="Item 1">
                 </div>
                 <div class="coverflow-item" onclick="handleClick(1)">
-                    <img src="image1.jpg" alt="Item 2">
+                    <img src="image2.jpeg" alt="Item 2">
                 </div>
                 <div class="coverflow-item active" onclick="handleClick(2)">
-                    <img src="image1.jpg" alt="Item 3">
+                    <img src="image3.jpeg" alt="Item 3">
                 </div>
                 <div class="coverflow-item" onclick="handleClick(3)">
-                    <img src="image1.jpg" alt="Item 4">
+                    <img src="image4.jpeg" alt="Item 4">
                 </div>
                 <div class="coverflow-item" onclick="handleClick(4)">
-                    <img src="image1.jpg" alt="Item 5">
+                    <img src="image5.jpeg" alt="Item 5">
                 </div>
                 <div class="coverflow-item" onclick="handleClick(5)">
-                    <img src="image1.jpg" alt="Item 6">
+                    <img src="image6.jpeg" alt="Item 6">
                 </div>
             </div>
         </div>
@@ -167,16 +236,16 @@
         <div class="title">
             Happy Valentines Love!!!
         </div>
-    </div>
 
+        <div class="sub-title">
+            I Love You!!!
+        </div>
+    </div>
 
     <audio autoplay loop id="background-music">
         <source src="bawatsandali.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-
-
-
 
     <script>
         const coverflow = document.querySelector('.coverflow');
