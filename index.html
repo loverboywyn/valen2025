@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coverflow Slider</title>
+    <title>All the way</title>
+    <link rel="icon" href="flower.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
@@ -26,7 +27,6 @@
             justify-content: center;
             align-content: center;
             align-items: center;
-            gap: 50px;
         }
 
         .coverflow-wrapper {
@@ -65,6 +65,7 @@
         .coverflow-item img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
             border-radius: 10px;
         }
 
@@ -109,12 +110,14 @@
             align-items: center;
             font-size: 36px;
             letter-spacing: 2px;
+            padding: 10px;
         }
 
         .sub-title {
             align-items: center;
             font-size: 26px;
             letter-spacing: 2px;
+            padding: 10px;
         }
 
 
@@ -134,10 +137,8 @@
         @media only screen and (max-width: 768px) {
             .petal {
                 width: 30px;
-                /* Smaller petals */
                 height: 30px;
                 animation: petalFallMobile 3s linear forwards;
-                /* Faster animation */
             }
 
             @keyframes petalFallMobile {
@@ -157,24 +158,62 @@
                 }
             }
 
-            /* Adjust coverflow items for mobile */
             .coverflow-item {
                 width: 150px;
-                /* Smaller items */
                 height: 225px;
-                /* Adjust height proportionally */
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .sub-title {
+                font-size: 16px;
+            }
+        }
+
+        /* Tablet view adjustments */
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+            .petal {
+                width: 35px;
+                height: 35px;
+                animation: petalFallTablet 4s linear forwards;
+            }
+
+            @keyframes petalFallTablet {
+                0% {
+                    opacity: 1;
+                    transform: translateY(-40px) rotate(45deg);
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translateY(100vh) rotate(360deg);
+                }
+            }
+
+            /* Adjust coverflow items for tablet */
+            .coverflow-item {
+                width: 180px;
+                height: 270px;
+            }
+
+            /* Adjust titles for tablet */
+            .title {
+                font-size: 32px;
+            }
+
+            .sub-title {
+                font-size: 24px;
             }
         }
 
         #background-music {
             position: absolute;
-            /* Ensure it doesn't affect layout */
             width: 0;
             height: 0;
             opacity: 0;
-            /* Make it completely invisible */
             pointer-events: none;
-            /* Disable any interaction */
         }
     </style>
 
@@ -215,17 +254,12 @@
             I Love You!!!
         </div>
 
-
     </div>
-
 
     <audio autoplay loop id="background-music">
         <source src="bawatsandali.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
-
-
-
 
     <script>
         const coverflow = document.querySelector('.coverflow');
@@ -295,6 +329,3 @@
         updateCoverFlow();
     </script>
 
-</body>
-
-</html>
